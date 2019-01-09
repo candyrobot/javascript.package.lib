@@ -37,18 +37,11 @@ function AppBar_(props) {
 }
 
 class Drawer_ extends Component {
-  constructor(props) {
-    console.log(props.open)
-    super(props);
-    this.state = {
-      open: this.props.open
-    };
-  }
   render() {
-    console.log(this.state.open)
+    const { open, onClose } = this.props;
     return (
-    <Drawer open={this.props.open}>
-      <List>
+    <Drawer open={open}>
+      <List onClick={onClose}>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
@@ -75,13 +68,18 @@ class Drawer_ extends Component {
 }
 
 export default class extends Component {
-  state = { open: false };
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    }
+  }
   render() {
     const { className } = this.props;
     return (
     <div className={ className || 'App' }>
       <AppBar_ onClickMenu={()=> this.setState({ open: true })} />
-      <Drawer_ open={this.state.open} />
+      <Drawer_ open={this.state.open} onClose={()=> this.setState({ open: false })} />
     </div>
     );
   }
