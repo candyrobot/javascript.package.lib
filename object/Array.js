@@ -83,19 +83,6 @@ Array.prototype.clone = function() {
 };
 
 /**
- * INFO: 3次元以降に対応していない。したい。
- * @param  {[type]}
- * @return {[type]}
- */
-Array.prototype.mapAll = function(fn) {
-  return this.map((a, y)=> {
-    return a.map((v, x)=> {
-      return fn(v, { x:x, y:y }, this);
-    });
-  });
-};
-
-/**
  * 右回転する
  * @return {[type]} [description]
  */
